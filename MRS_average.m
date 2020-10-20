@@ -120,3 +120,18 @@ mrs_file_list = names(20:25,1); % reads files (20-25) in data dir
 mr_spectroscopy_objects_to_average = get_mr_spectroscopy_objects(mrs_file_list,input_file_path_str);
 option_struct.nAverages = length(mr_spectroscopy_objects_to_average);
 batch_spectrally_average_mrs_data(mr_spectroscopy_objects_to_average,output_label_str,option_struct);
+
+
+
+pause(0);
+
+
+
+%% --
+function mr_spectroscopy_objects_to_average = get_mr_spectroscopy_objects(mrs_file_list_cell_1xn,subj_dir)
+
+for file_index = 1:length(mrs_file_list_cell_1xn)
+    filename_str = fullfile(base_data_path_str,mrs_file_list_cell_1xn{file_index});
+    mr_spectroscopy_objects_to_average(file_index) = mr_spectroscopy_object(filename_str); %#ok<AGROW>
+end
+
