@@ -8,13 +8,9 @@ clc
 
 %% initial setup (directories, raw data, outputs)
 
-% provide input directory
-subj_dir = '/Users/julio/Documents/Matlab/MRS_average/foo'; % provide path to data dir
-cd(subj_dir)
-
 % provide data specs
 % assumes data are in 'GROUP_PARTICIPANTID_CONDITION' format
-group = 'foo'
+group = 'PATIENT'
 subj = '999'
 cond = 'BASELINE'
 
@@ -22,8 +18,12 @@ cond = 'BASELINE'
 str = '%s_%s_%s';
 data_label_str = sprintf(str,group,subj,cond);
 
+% provide input directory
+subj_dir = sprintf('/Users/julio/Documents/Matlab/MRS_average/%s_%s',group,subj);
+cd(subj_dir)
+
 % select files to average using provided data specifics
-names = dir(data_label_str);
+names = dir(cond);
 names = struct2table(names);
 names = table2cell(names);
 names(1:2,:)=[];
@@ -40,7 +40,7 @@ option_struct.write_raw_files = true;
 output_label_str = sprintf('%s_all',data_label_str);
 
 % determine .IMA files to average
-input_file_path_str = fullfile(subj_dir,data_label_str); % points to data dir
+input_file_path_str = fullfile(subj_dir,cond); % points to data dir
 mrs_file_list = names(:,1); % reads all files in data dir
 
 % average .IMA files
@@ -54,7 +54,7 @@ batch_spectrally_average_mrs_data(mr_spectroscopy_objects_to_average,output_labe
 output_label_str = sprintf('%s_ts1',data_label_str);
 
 % determine .IMA files to average
-input_file_path_str = fullfile(subj_dir,data_label_str); % points to data dir
+input_file_path_str = fullfile(subj_dir,cond); % points to data dir
 mrs_file_list = names(1:5,1); % reads files (1-5) in data dir
 
 % average .IMA files
@@ -68,7 +68,7 @@ batch_spectrally_average_mrs_data(mr_spectroscopy_objects_to_average,output_labe
 output_label_str = sprintf('%s_ts2',data_label_str);
 
 % determine .IMA files to average
-input_file_path_str = fullfile(subj_dir,data_label_str); % points to data dir
+input_file_path_str = fullfile(subj_dir,cond); % points to data dir
 mrs_file_list = names(6:10,1); % reads files (6-10) in data dir
 
 % average .IMA files
@@ -82,7 +82,7 @@ batch_spectrally_average_mrs_data(mr_spectroscopy_objects_to_average,output_labe
 output_label_str = sprintf('%s_ts3',data_label_str);
 
 % determine .IMA files to average
-input_file_path_str = fullfile(subj_dir,data_label_str); % points to data dir
+input_file_path_str = fullfile(subj_dir,cond); % points to data dir
 mrs_file_list = names(11:15,1); % reads files (11-15) in data dir
 
 % average .IMA files
@@ -96,7 +96,7 @@ batch_spectrally_average_mrs_data(mr_spectroscopy_objects_to_average,output_labe
 output_label_str = sprintf('%s_ts4',data_label_str);
 
 % determine .IMA files to average
-input_file_path_str = fullfile(subj_dir,data_label_str); % points to data dir
+input_file_path_str = fullfile(subj_dir,cond); % points to data dir
 mrs_file_list = names(16:20,1); % reads files (16-20) in data dir
 
 % average .IMA files
@@ -110,7 +110,7 @@ batch_spectrally_average_mrs_data(mr_spectroscopy_objects_to_average,output_labe
 output_label_str = sprintf('%s_ts5',data_label_str);
 
 % determine .IMA files to average
-input_file_path_str = fullfile(subj_dir,data_label_str); % points to data dir
+input_file_path_str = fullfile(subj_dir,cond); % points to data dir
 mrs_file_list = names(20:25,1); % reads files (20-25) in data dir
 
 % average .IMA files
